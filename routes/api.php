@@ -8,5 +8,19 @@ Route::get('/students', function() {
     return 'Students list';
 });
 
+Route::get('/students/{id}', function() {
+    return 'Fetching a student';
+});
 
+Route::post('/students', function() {
+    return 'Creating a student';
+});
+
+Route::put('/students/{id}', function() {
+    return 'Updating student';
+}); 
+
+Route::delete('/students/{id}', function() {
+    return 'Deleting student';
+});
 
