@@ -3,10 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\StudentController;
+
 //This is how routes are defined
-Route::get('/students', function() {
-    return 'Students list';
-});
+Route::get('/students', [StudentController::class, 'index']);
 
 Route::get('/students/{id}', function() {
     return 'Fetching a student';
