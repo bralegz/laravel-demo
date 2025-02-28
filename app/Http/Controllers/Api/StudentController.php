@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 
 class StudentController extends Controller
@@ -27,34 +28,21 @@ class StudentController extends Controller
     public function store(Request $request) 
     {
 
-        //Validate fields
-        $validator = Validator::make($request->all(), [
+         // Validate fields
+        $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
             'language' => 'required'
         ]);
 
-        //Response if validation fails
-        if($validator->fails()) {
-            $data = [
-                'message' => 'Error in data validation',
-                'errors' => $validator->errors(),
-                'status' => 400
-            ];
+        // Log the validated data
+        Log::info('Validated data:', $validatedData);
 
-            return response()->json($data, 400);
-        };
+        // Create new student using Student model
+        $student = Student::create($validatedData);
 
-
-        //Create new student using Student model
-        $student = Student::create([
-            'name' => $request -> name,
-            'email' => $request -> email,
-            'phone' => $request -> phone,
-            'language' => $request -> language
-        ]);
-
+        
         //Response if there was an error creating the student
         if(!$student) {
             $data = [
