@@ -18,6 +18,6 @@ class Student extends Model
     'name',
     'email',
     'phone',
-    'address'
+    'language'
    ];
 }

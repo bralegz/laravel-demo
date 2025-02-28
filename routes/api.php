@@ -12,9 +12,7 @@ Route::get('/students/{id}', function() {
     return 'Fetching a student';
 });
 
-Route::post('/students', function() {
-    return 'Creating a student';
-});
+Route::post('/students', [StudentController::class, 'store']);
 
 Route::put('/students/{id}', function() {
     return 'Updating student';
