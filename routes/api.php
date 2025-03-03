@@ -14,7 +14,5 @@ Route::post('/students', [StudentController::class, 'store']);
 
 // Route::put('/students/{id}', [StudentController::class, 'show']); 
 
-Route::delete('/students/{id}', function() {
-    return 'Deleting student';
-});
+Route::delete('/students/{id}', [StudentController::class, 'destroy']);
 
