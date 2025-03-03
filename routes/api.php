@@ -14,5 +14,7 @@ Route::post('/students', [StudentController::class, 'store']); //Create resource
 
 Route::put('/students/{id}', [StudentController::class, 'update']); //Update all fields
 
+Route::patch('/students/{id}', [StudentController::class, 'updatePartial']); //Update some fields
+
 Route::delete('/students/{id}', [StudentController::class, 'destroy']); //Delete resource
 

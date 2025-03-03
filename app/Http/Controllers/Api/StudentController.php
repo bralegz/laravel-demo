@@ -142,4 +142,53 @@ class StudentController extends Controller
         return response()->json($data, 200);
 
     }
+
+    public function updatePartial(Request $request, $id) 
+    {
+        $student = Student::find($id);
+
+        if(!$student) {
+            $data = [
+                'message' => 'Student not found',
+                'status' => 404
+            ];
+
+            return response()->json($data, 404);
+        }
+
+        // Validate fields
+        $validatedData = $request->validate([
+            'name' => 'max:255',
+            'email' => 'email|unique:student',
+            'phone' => 'digits:10',
+            'language' => 'in:Javascript,Go'
+        ]);
+
+        if($request->has('name')) {
+            $student->name = $request->name;
+        }
+
+        if($request->has('email')) {
+            $student->email = $request->email;
+        }
+
+        if($request->has('phone')) {
+            $student->phone = $request->phone;
+        }
+
+        if($request->has('language')) {
+            $student->language = $request->language;
+        }
+
+        $student->save();
+
+        $data = [
+            'message' => 'Student updated', 
+            'student' => $student,
+            'status' => 200
+        ];
+
+        return response()->json($data, 200);
+
+    }
 }
