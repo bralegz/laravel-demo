@@ -10,9 +10,9 @@ Route::get('/students', [StudentController::class, 'index']);
 
 Route::get('/students/{id}', [StudentController::class, 'show']);
 
-Route::post('/students', [StudentController::class, 'store']);
+Route::post('/students', [StudentController::class, 'store']); //Create resource
 
-// Route::put('/students/{id}', [StudentController::class, 'show']); 
+Route::put('/students/{id}', [StudentController::class, 'update']); //Update all fields
 
-Route::delete('/students/{id}', [StudentController::class, 'destroy']);
+Route::delete('/students/{id}', [StudentController::class, 'destroy']); //Delete resource
 
